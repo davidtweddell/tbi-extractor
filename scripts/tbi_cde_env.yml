@@ -1,0 +1,14 @@
+name: tbi_cde_env
+dependencies:
+- python==3.6.6
+- pandas==0.23.4
+- spacy==2.0.12
+- numpy==1.15.0
+- networkx==1.11
+- ipython
+- spyder
+- jupyter
+- pip
+- pip:
+    - pyConTextNLP==0.6.2.0
+
