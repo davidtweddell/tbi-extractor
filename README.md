@@ -1,44 +1,53 @@
-Traumatic Brain Injury (TBI) Radiologic Imaging Common Data Element Extrator
-===================================================================================
+# tbiExtractor
 
-The package is maintained by Margaret Mahan at the University of Minnesota
+tbiExtractor, extends pyConTextNLP, a regular expression algorithm using negation detection and contextual features, to create a framework for extracting TBI common data elements from radiology reports. The algorithm inputs a radiology report and outputs a structured summary containing 27 clinical findings with their respective annotations.
 
+Default lexical targets: aneurysm, anoxic, atrophy, cistern, contusion, diffuse_axonal, epidural_hemorrhage, facial_fracture, fluid, gray_white_differentiation, hemorrhage, herniation, hydrocephalus, hyperdensities, hypodensities, intracranial_pathology, intraparenchymal_hemorrage, intraventricular_hemorrhage, ischemia, mass_effect, microhemorrhage, midline_shift, pneumocephalus, skull_fracture, subarachnoid_hemorrhage, subdural_hemorrhage, swelling.
 
-Installation
--------------
+Default annotations: PRESENT, SUSPECTED, INDETERMINATE, ABSENT, ABNORMAL, NORMAL.
 
-Download or fork project on GitHub. Where you place the project will be the ``root_path``.
+Citation: Mahan M, Rafter D, Casey H, Engelking M, Abdallah T, Truwit C, et al. (2020) tbiExtractor: A framework for extracting traumatic brain injury common data elements from radiology reports. PLoS ONE 15(7): e0214775. [https://doi.org/10.1371/journal.pone.0214775](https://doi.org/10.1371/journal.pone.0214775)
 
-Using Anaconda, the data science platform in Python, create an enviroment using the yaml file.
+## Input
 
-``cd root_path/scipts``
+**report_file (str)**: Path to the .txt file containing the radiology report.
 
-``conda env create -f tbi_cde_env.yml``
+**save_target_phrases (bool)**:  If True, save the lexical target phrases identified in the report for the resulting annotation.
 
-This will create an environment with the required Python packages.
+**save_modifier_phrases (bool)**: If True, save the lexical modifier phrases identified in the report for the resulting annotation.
 
-To alias your environment for ease of use:
+*>>>>> Can only set to include or exclude lexical target options to limit the search. Defaults to standard target list.*
 
-``CONDA_ENVS=<enter path to environments>``
+**include_targets (list)**: A subset of the available lexical targets options to include. Default: None, resulting in standard target list output.
 
-	For example: /home/username/anaconda/envs
-
-``SCRIPT_ENV=$CONDA_ENVS/tbi_cde_env``
-
-``PYTHON=$SCRIPT_ENV/bin/python3.6``
-
-Download and install spaCy model
-
-``$PYTHON -m spacy download en``
+**exclude_targets (list)**: A subset of the available lexical targets options to exclude. Default: None, resulting in standard target list output.
 
 
-Tutorials
-----------
+## Process
 
-For using .ipynb use Jupyter
+1. Parse inputs to set configuration for tbiExtractor algorithm.
 
-``JUPYTER=$SCRIPT_ENV/bin/jupyter-notebook``
+2. Annotation of sentences constituting the report.
+	- Sentence markup followed by span, modifier, and distance pruning
 
-For using .py use Spyder
+3. Annotation of the report.
+	- Report markup with revisions for omitted, duplicate, and derived targets.
 
-``SPYDER=$SCRIPT_ENV/bin/spyder``
+
+## Output
+
+The output is a Pandas DataFrame:
+
+Rows: each row contains one annotation for each of the twenty-seven common data elements (or an input configured subset).
+
+Columns:
+
+target phrase: the target literal extracted from the radiology report document (if input configured).
+
+target group: one of the twenty-seven common data elements generated via the target phrase.
+
+modifier phrase: a comma separated list of the modifier literals extracted from the radiology report document (if input configured).
+
+modifier group: the annotation for the target group based on the modifier phrase.
+
+	OPTIONS: PRESENT, ABSENT, INDETERMINATE, NOT SPECIFIED, ABNORMAL, NORMAL.
