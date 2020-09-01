@@ -1,0 +1,261 @@
+Lex	Type	Regex	Direction	Sort	Final_Sort
+no acute appearing loss of	NORMAL		forward	1	1
+no convincing acute loss of	NORMAL		forward	1	2
+no loss of	NORMAL	no\s(acute\s)?loss\sof	forward	1	3
+appropriate for age	NORMAL		bidirectional	1	4
+normal	NORMAL		bidirectional	1	5
+appears preserved	NORMAL	appear(s)?\s(grossly\s)?preserved	backward	1	6
+intact	NORMAL		backward	1	7
+is age-appropriate	NORMAL		backward	1	8
+is currently intact	NORMAL		backward	1	9
+patent	NORMAL		backward	1	10
+preserved	NORMAL		backward	1	11
+absence of	ABSENT		forward	2	12
+adequate to rule the patient out	ABSENT		forward	2	13
+can rule out against	ABSENT	can\srule\s((patient|the\spatient|her|him)\s)?out(\sagainst|\sfor)?	forward	2	14
+declined	ABSENT		forward	2	15
+did rule out	ABSENT		forward	2	16
+did rule the patient out	ABSENT	did\srule\s(patient|the patient|her|him)\sout(\sagainst)?	forward	2	17
+fails to reveal	ABSENT		forward	2	18
+free of	ABSENT		forward	2	19
+must be ruled out for	ABSENT		forward	2	20
+negative examination for	ABSENT	negative\s((examination|study|exam|evaluation)\s)?for	forward	2	21
+never had	ABSENT		forward	2	22
+no	ABSENT	\bno\b	forward	2	23
+no abnormal	ABSENT	(no|nothing)\s(abnormal|acute|associated|convincing)\s(acute)?	forward	2	24
+no convincing associated	ABSENT		forward	2	25
+no definite	ABSENT	no[\s]*definite\s(acute|evidence\sof\sacute)?	forward	2	26
+no definite signs of	ABSENT	(no|without)\s(definite|definitive|secondary|indirect)\s((radiographic|sonographic|CT)\s)?signs\s(of|for)	forward	2	27
+no evidence of	ABSENT	(no|without)\s((definite|other|definitive|secondary|indirect)\s)?((radiographic|sonographic|CT)\s)?evidence\s(of|for)?	forward	2	28
+no evidence of new	ABSENT		forward	2	29
+no evidence of significant	ABSENT		forward	2	30
+no external	ABSENT	(no|nothing)\s(underlying|external|findings\sto\sindicate|new|other\ssuspicion|significant|signs|suggestion)(s)?	forward	2	31
+no obvious	ABSENT		forward	2	32
+no significant associated	ABSENT		forward	2	33
+no suspicion for acute	ABSENT		forward	2	34
+no XYZ to suggest	ABSENT	(\b(without|no)\b[\d\D\s]*to suggest)	forward	2	35
+not had	ABSENT	not\s(had|have|reveal|see|demonstrate|exhibit)	forward	2	36
+patient was not	ABSENT		forward	2	37
+rules the patient out for	ABSENT	rules\s((patient|the patient|her|him)\s)?out\s(\s(for|against))?	forward	2	38
+sufficient to rule out	ABSENT	sufficient\sto\srule\s((patient|the patient|her|him)\s)?out	forward	2	39
+the patient was not	ABSENT	(patient|the\spatient|her|him)\swas\snot	forward	2	40
+there is no	ABSENT		forward	2	41
+unremarkable for	ABSENT		forward	2	42
+with no	ABSENT		forward	2	43
+without	ABSENT	without(\ssign(s)?)?	forward	2	44
+without associated	ABSENT		forward	2	45
+can be ruled out	ABSENT	(can|could)\sbe\sruled\sout(\sfor)?	bidirectional	2	46
+may be ruled out	ABSENT		bidirectional	2	47
+no longer noted	ABSENT	no\slonger\s(seen|noted|visualized)	bidirectional	2	48
+not	ABSENT	\bnot\b	bidirectional	2	49
+not likely	ABSENT		bidirectional	2	50
+unlikely	ABSENT		bidirectional	2	51
+without definite	ABSENT		bidirectional	2	52
+without significant	ABSENT		bidirectional	2	53
+are ruled out	ABSENT		backward	2	54
+completely excluded	ABSENT	(completely|entirely)?\sexcluded	backward	2	55
+excluded	ABSENT		backward	2	56
+free	ABSENT		backward	2	57
+has been ruled out	ABSENT	(has|have)\sbeen\sruled\sout	backward	2	58
+is negative	ABSENT	(is|was)\snegative	backward	2	59
+is ruled out	ABSENT	(was|is|must\sbe)\sruled\sout	backward	2	60
+with prior	ABSENT		backward	2	61
+age appropriate	ABNORMAL		forward	3	62
+asymmetric	ABNORMAL		forward	3	63
+effacing	ABNORMAL		forward	3	64
+loss of	ABNORMAL		forward	3	65
+narrowing	ABNORMAL		forward	3	66
+no areas of acute	ABSENT		forward	3	67
+no findings to suggest acute	ABSENT		forward	3	68
+obliteration	ABNORMAL		forward	3	69
+completely effaced	ABNORMAL		bidirectional	3	70
+compression	ABNORMAL	(compress(ion|ed)|compress)	bidirectional	3	71
+effacement	ABNORMAL	(effacement|effaced)(\sof)?	bidirectional	3	72
+appears grossly preserved except for	ABNORMAL		backward	3	73
+abnormal	PRESENT		forward	4	74
+abundant	PRESENT		forward	4	75
+acute	PRESENT		forward	4	76
+additional	PRESENT		forward	4	77
+associated	PRESENT		forward	4	78
+associated with	PRESENT		forward	4	79
+can see	PRESENT		forward	4	80
+comminuted	PRESENT		forward	4	81
+compatible with	PRESENT		forward	4	82
+complex	PRESENT		forward	4	83
+consistent with	PRESENT		forward	4	84
+convincing	PRESENT		forward	4	85
+decreased	PRESENT		forward	4	86
+definite	PRESENT		forward	4	87
+depressed	PRESENT		forward	4	88
+diffuse	PRESENT		forward	4	89
+displaced	PRESENT		forward	4	90
+evidence	PRESENT		forward	4	91
+extensive	PRESENT		forward	4	92
+findings are consistent with	PRESENT		forward	4	93
+findings of	PRESENT		forward	4	94
+foci of	PRESENT	(foci|focus)\sof	forward	4	95
+generalized	PRESENT		forward	4	96
+gross evidence	PRESENT		forward	4	97
+highly suggestive	PRESENT		forward	4	98
+increased	PRESENT		forward	4	99
+increased conspicuity	PRESENT		forward	4	100
+innumerable	PRESENT		forward	4	101
+large	PRESENT		forward	4	102
+left to right	PRESENT	(left|right)\sto\s(right|left)	forward	4	103
+left-to-right	PRESENT	(left|right)-to-(right|left)	forward	4	104
+leftward	PRESENT	((cm|mm)\s)?(of\s)?(left|right|leftward|rightward)	forward	4	105
+likely	PRESENT		forward	4	106
+localized	PRESENT		forward	4	107
+mild	PRESENT		forward	4	108
+minimal	PRESENT		forward	4	109
+moderate	PRESENT		forward	4	110
+multifocal	PRESENT		forward	4	111
+multiple	PRESENT		forward	4	112
+no significant change	PRESENT		forward	4	113
+nondisplaced	PRESENT		forward	4	114
+now showing	PRESENT		forward	4	115
+obvious	PRESENT		forward	4	116
+other than the	PRESENT		forward	4	117
+patchy	PRESENT		forward	4	118
+persistent	PRESENT		forward	4	119
+positive study for	PRESENT	positive(\s(study|exam|examination))(\sfor)?	forward	4	120
+predominantly	PRESENT		forward	4	121
+redemonstration	PRESENT		forward	4	122
+represents	PRESENT		forward	4	123
+reveals	PRESENT		forward	4	124
+rupture of	PRESENT		forward	4	125
+scattered	PRESENT		forward	4	126
+seen is a	PRESENT		forward	4	127
+severe	PRESENT		forward	4	128
+significant	PRESENT		forward	4	129
+slightly	PRESENT		forward	4	130
+small amount	PRESENT		forward	4	131
+some	PRESENT		forward	4	132
+stable	PRESENT		forward	4	133
+subtle	PRESENT		forward	4	134
+there are	PRESENT	there\s(are|is)	forward	4	135
+thin	PRESENT	\bthin\b	forward	4	136
+with adjacent	PRESENT		forward	4	137
+appear	PRESENT	appear(s)?	bidirectional	4	138
+believe	PRESENT		bidirectional	4	139
+high probability	PRESENT		bidirectional	4	140
+is positive	PRESENT		bidirectional	4	141
+new	PRESENT		bidirectional	4	142
+new from prior exam	PRESENT	new\sfrom(\sthe)?\sprior\s(exam|study)	bidirectional	4	143
+nonspecific	PRESENT		bidirectional	4	144
+overlying	PRESENT		bidirectional	4	145
+small	PRESENT	(small|smaller)	bidirectional	4	146
+suggest	PRESENT	\bsuggest[a-z]+\b	bidirectional	4	147
+unchanged	PRESENT		bidirectional	4	148
+upward	PRESENT		bidirectional	4	149
+adjacent to the	PRESENT		backward	4	150
+along the	PRESENT		backward	4	151
+are present	PRESENT	are\s(also\s)?present	backward	4	152
+do not appear significantly changed	PRESENT		backward	4	153
+in	PRESENT	\bin\b	backward	4	154
+in the	PRESENT		backward	4	155
+in the bilateral	PRESENT		backward	4	156
+is demonstrated	PRESENT		backward	4	157
+is present	PRESENT	(is|are)\spresent	backward	4	158
+measuring	PRESENT		backward	4	159
+not significant change	PRESENT		backward	4	160
+not significantly changed	PRESENT		backward	4	161
+over the	PRESENT		backward	4	162
+overlies the	PRESENT		backward	4	163
+right greater than left	PRESENT	(right|left)\sgreater\sthan\s(left|right)	backward	4	164
+suggestive	PRESENT	suggestive(\sof)?	backward	4	165
+within the	PRESENT		backward	4	166
+appears to be	SUSPECTED		forward	5	167
+checked for	SUSPECTED		forward	5	168
+concerning for	SUSPECTED		forward	5	169
+could be	SUSPECTED		forward	5	170
+could represent	SUSPECTED		forward	5	171
+decreased conspicuity	SUSPECTED		forward	5	172
+every indication	SUSPECTED		forward	5	173
+likely represents	SUSPECTED	likely\s(represents|representing|represent)	forward	5	174
+may be related	SUSPECTED		forward	5	175
+may include	SUSPECTED		forward	5	176
+may represent	SUSPECTED	(may|might)\s(represent|reflect)	forward	5	177
+mild patchy	SUSPECTED		forward	5	178
+mild scattered	SUSPECTED		forward	5	179
+no other	SUSPECTED		forward	5	180
+possible minimal	SUSPECTED		forward	5	181
+possible tiny	SUSPECTED		forward	5	182
+presumably	SUSPECTED		forward	5	183
+questionable tiny	SUSPECTED		forward	5	184
+rather than	SUSPECTED		forward	5	185
+suspect	SUSPECTED		forward	5	186
+suspicious	SUSPECTED	suspicious(\sfor)?	forward	5	187
+tiny amount of	SUSPECTED		forward	5	188
+very small	SUSPECTED		forward	5	189
+worrisome	SUSPECTED		forward	5	190
+as a suggestion	SUSPECTED		bidirectional	5	191
+construed as	SUSPECTED		bidirectional	5	192
+equivocal	SUSPECTED		bidirectional	5	193
+exhibit	SUSPECTED		bidirectional	5	194
+favor	SUSPECTED		bidirectional	5	195
+possible	SUSPECTED	(possible|possibly)	bidirectional	5	196
+probable	SUSPECTED		bidirectional	5	197
+questionable	SUSPECTED		bidirectional	5	198
+should be considered	SUSPECTED		bidirectional	5	199
+signs of	SUSPECTED		bidirectional	5	200
+appearing consistent with	SUSPECTED		backward	5	201
+is noted	SUSPECTED		backward	5	202
+may be slightly less	SUSPECTED		backward	5	203
+seen best	SUSPECTED		backward	5	204
+suspected	SUSPECTED		backward	5	205
+atypical for	INDETERMINATE		forward	6	206
+cannot	INDETERMINATE		forward	6	207
+cannot exclude	INDETERMINATE		forward	6	208
+cannot rule out	INDETERMINATE	cannot\srule(\s(patient|the\spatient|her|him ))?\sout	forward	6	209
+cannot see	INDETERMINATE		forward	6	210
+declines	INDETERMINATE		forward	6	211
+decrease the likelihood	INDETERMINATE	decreas[a-z]+(\sthe\s)?likelihood	forward	6	212
+denied	INDETERMINATE	denie(d|s)	forward	6	213
+deny	INDETERMINATE	deny(ing)?	forward	6	214
+differential diagnosis would include	INDETERMINATE	differential\s((diagnosis|considerations)\s)?((would|could)\sinclud[a-z]*)?	forward	6	215
+insufficient to rule the patient out for	INDETERMINATE	insufficient\sto\srule\s(patient|the\spatient|her|him)\sout\sfor	forward	6	216
+low probability	INDETERMINATE		forward	6	217
+might be ruled out for	INDETERMINATE		forward	6	218
+mimicking	INDETERMINATE		forward	6	219
+never developed	INDETERMINATE		forward	6	220
+no cause of	INDETERMINATE		forward	6	221
+no complaints of	INDETERMINATE		forward	6	222
+no findings of	INDETERMINATE		forward	6	223
+no other CT evidence	INDETERMINATE	no\s((other|secondary)\s)?((CT|radiographic|sonographic)\s)?evidence	forward	6	224
+no sign of	INDETERMINATE		forward	6	225
+no suspicious	INDETERMINATE		forward	6	226
+nor	INDETERMINATE	\bnor\b	forward	6	227
+not adequate to rule out	INDETERMINATE	not\sadequate\sto\srule\s((patient|the patient|her|him)\s)?out	forward	6	228
+not appreciate	INDETERMINATE		forward	6	229
+not associated with	INDETERMINATE		forward	6	230
+not clearly evident	INDETERMINATE		forward	6	231
+not complain of	INDETERMINATE		forward	6	232
+not feel	INDETERMINATE		forward	6	233
+not know of	INDETERMINATE		forward	6	234
+not known to have	INDETERMINATE		forward	6	235
+not to be	INDETERMINATE		forward	6	236
+nothing	INDETERMINATE		forward	6	237
+simulating	INDETERMINATE		forward	6	238
+test for	INDETERMINATE		forward	6	239
+to exclude	INDETERMINATE		forward	6	240
+unable to assess	INDETERMINATE	unable\sto\s(adequately\s)?assess	forward	6	241
+without indication	INDETERMINATE		forward	6	242
+without loss	INDETERMINATE		forward	6	243
+borderline	INDETERMINATE		bidirectional	6	244
+cannot be completely excluded	INDETERMINATE	cannot\sbe\s((entirely|completely|totally)\s)?(excluded|ruled\sout|evaluated)	bidirectional	6	245
+clear	INDETERMINATE		bidirectional	6	246
+could not be ruled	INDETERMINATE		bidirectional	6	247
+highly hesitant	INDETERMINATE		bidirectional	6	248
+incompletely evaluated	INDETERMINATE		bidirectional	6	249
+less likely	INDETERMINATE		bidirectional	6	250
+cannot totally be excluded	INDETERMINATE	cannot\stotally\s(be\sexcluded|exclude)	backward	6	251
+is in the differential	INDETERMINATE		backward	6	252
+is not entirely excluded	INDETERMINATE	(is|was|are|were|does)\snot\s(entirely|totally|definitely|completely)\sexcluded	backward	6	253
+is not excluded	INDETERMINATE	(is|was|are|were)\snot\sexcluded	backward	6	254
+might be ruled out	INDETERMINATE		backward	6	255
+not definitive	INDETERMINATE		backward	6	256
+not definitively seen	INDETERMINATE	not\sdefinitively\s(seen|visualized)	backward	6	257
+not excluded	INDETERMINATE	not\s(excluded|ruled\sout)	backward	6	258
+was not excluded	INDETERMINATE	(was|were)\snot\sexcluded	backward	6	259
+would not be expected	INDETERMINATE		backward	6	260
