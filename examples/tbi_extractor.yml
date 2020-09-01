@@ -1,0 +1,12 @@
+name: tbi_extractor
+dependencies:
+- python==3.6.6
+- networkx==1.11
+- numpy>=1.15.0
+- pandas>=0.23.4
+- spacy==2.0.12
+- jupyter
+- spyder
+- pip
+- pip:
+    - pyConTextNLP==0.6.2.0
