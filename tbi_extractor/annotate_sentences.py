@@ -171,11 +171,13 @@ def distance_pruning(context):
         # find nearest modifier for target with multiple modifiers in one sentence
         try:
             if len(g.predecessors(node)) > 1:
+
                 target_span = node.getSpan()
                 distance_columns = output_columns + ["left_diff", "right_diff"]
                 modifier_distances = pd.DataFrame(columns=distance_columns)
 
                 for i in range(len(g.predecessors(node))):
+
                     modifier_dist = pd.DataFrame(columns=distance_columns)
                     modifier_span = g.predecessors(node)[i].getSpan()
                     left_diff = target_span[0] - modifier_span[1]
@@ -188,7 +190,7 @@ def distance_pruning(context):
                     if right_diff < 0:
                         right_diff = np.nan
 
-                    modifier_phrase = g.predecessors(node)[i].getLiteral()
+                    modifier_phrase = g.predecessors(node)[i].getPhrase()
                     modifier_group = g.predecessors(node)[i].categoryString()
 
                     data = [
@@ -223,7 +225,7 @@ def distance_pruning(context):
                     nearest_modifier = nearest_modifier[output_columns]
 
             else:
-                modifier_phrase = g.predecessors(node)[0].getLiteral()
+                modifier_phrase = g.predecessors(node)[0].getPhrase()
                 modifier_group = g.predecessors(node)[0].categoryString()
                 data = [[target_phrase, target_group, modifier_phrase, modifier_group]]
                 nearest_modifier = pd.DataFrame(data, columns=output_columns)

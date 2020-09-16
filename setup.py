@@ -3,7 +3,7 @@
 """
 import setuptools
 
-VERSION = "0.2.0"
+VERSION = "0.3.0"
 
 with open("README.md", "r") as f:
     LONG_DESCRIPTION = f.read()
@@ -24,7 +24,7 @@ setuptools.setup(
         "License :: MIT",
         "Programming Language :: Python :: 3",
     ],
-    python_requires=">=3.6",
+    python_requires=">=3.6.6",
     install_requires=[
         "pyConTextNLP==0.6.2.0",
         "networkx==1.11",
