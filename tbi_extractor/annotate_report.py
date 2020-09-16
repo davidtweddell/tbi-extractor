@@ -23,29 +23,32 @@ def run(df, target_list):
             and modifier group are also returned.
 
     """
-    df = df.reset_index()
-    df.drop(columns="index", inplace=True)
-
     # Ommitted targets: add targets that are missing from output based on
     # unique target list; default to absent or normal, depending upon target
+    df.reset_index(inplace=True, drop="index")
     df = ommitted_targets(df, target_list)
 
     # Duplicate targets: if duplicate lexical targets are identified,
     # the majority vote is selected
+    df.reset_index(inplace=True, drop="index")
     df = duplicate_targets(df)
 
     # Change modifier group to match those given to physicians
+    df.reset_index(inplace=True, drop="index")
     df = modifier_type_physician_match(df, target_list)
 
     # Derived targets:
     # Change hemorrhage NOS annotation to absent, if specific hemorrhages exist
+    df.reset_index(inplace=True, drop="index")
     df = is_specific_hemorrhage(df)
 
     # Change extraaxial fluid collection annotation to present/suspected,
     # if specific hemorrhages present/suspected
+    df.reset_index(inplace=True, drop="index")
     df = is_extraaxial_fluid_collection(df)
 
     # Change intracranial pathology annotation to present, if pathology exists
+    df.reset_index(inplace=True, drop="index")
     df = is_intracranial_pathology(df)
 
     return df
@@ -194,7 +197,7 @@ def combine_matching_targets_modifiers(df, target_group):
     # If modifier groups are equivalent for the target group,
     # only one will be retained; modifier phrases concatenated
     concat_modifiers = (
-        df.loc[(df["target_group"] == target_group), "modifier_group"]
+        df.loc[(df["target_group"] == target_group), "modifier_phrase"]
         .drop_duplicates(keep="first")
         .str.cat(sep=", ")
     )
@@ -331,6 +334,7 @@ def is_specific_hemorrhage(df):
             )
         ]
     )
+
     modifiers = df.loc[
         ((df["target_group"] == "hemorrhage")), "modifier_phrase"
     ].str.cat(sep=", ")
@@ -380,7 +384,7 @@ def is_extraaxial_fluid_collection(df):
         if len(is_default) > 0:
 
             df.loc[(df["target_group"] == "fluid"), "modifier_group"] = "suspected"
-            df.loc[(df["target_group"] == "fluid"), "modifier_group"] = (
+            df.loc[(df["target_group"] == "fluid"), "modifier_phrase"] = (
                 modifiers + ", is_extraaxial_fluid_collection"
             )
 
@@ -427,7 +431,7 @@ def is_intracranial_pathology(df):
         (df["target_group"] == "intracranial_pathology"), "modifier_phrase"
     ].tolist()
 
-    if (len(specific_pathology) > 0) and ("no acute" not in path_modifier):
+    if (len(specific_pathology) > 0) and ("no" not in str(path_modifier)):
 
         df.loc[
             (df["target_group"] == "intracranial_pathology"), "modifier_group"

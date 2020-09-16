@@ -101,8 +101,7 @@ def run(
         df.drop(columns="modifier_phrase", inplace=True)
 
     df.sort_values("target_group", axis=0, inplace=True)
-    df = df.reset_index()
-    df.drop(columns="index", inplace=True)
+    df.reset_index(inplace=True, drop="index")
 
     # Output annotated report as dataframe
     return df
