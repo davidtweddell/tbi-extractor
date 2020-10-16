@@ -28,4 +28,4 @@ Tutorials
 
 For using .ipynb use Jupyter
 
-``jupyter-notebook tbi_extractor_example.ipynb &``
+``jupyter-notebook tbi_extractor_example.ipynb``
