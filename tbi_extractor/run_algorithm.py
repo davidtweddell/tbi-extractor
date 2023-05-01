@@ -6,9 +6,9 @@ import logging
 import os
 from pathlib import Path
 
-from tbi_extractor import parse_input
-from tbi_extractor import annotate_sentences
-from tbi_extractor import annotate_report
+import parse_input
+import annotate_sentences
+import annotate_report
 
 
 FORMAT = "[%(asctime)s - %(levelname)s - %(name)s:%(lineno)d] %(message)s"
@@ -16,34 +16,36 @@ logging.basicConfig(level=logging.INFO, format=FORMAT, datefmt="%Y-%m-%d")
 log = logging.getLogger()
 
 
+# report_file = "/Users/david/projects/tbi-data/raw/pitt/raw-reports/xx00"
+
 TARGETS = [
-    "aneurysm",
-    "anoxic",
-    "atrophy",
-    "cistern",
+    # "aneurysm",
+    # "anoxic",
+    # "atrophy",
+    # "cistern",
     "contusion",
     "diffuse_axonal",
-    "epidural_hemorrhage",
-    "facial_fracture",
-    "fluid",
-    "gray_white_differentiation",
+    "edema",
+    "edh",
+    # "facial_fracture",
+    # "fluid",
+    # "gray_white_differentiation",
     "hemorrhage",
     "herniation",
     "hydrocephalus",
     "hyperdensities",
     "hypodensities",
-    "intracranial_pathology",
+    # "intracranial_pathology",
     "intraparenchymal_hemorrage",
     "intraventricular_hemorrhage",
     "ischemia",
-    "mass_effect",
-    "microhemorrhage",
+    # "mass_effect",
+    # "microhemorrhage",
     "midline_shift",
-    "pneumocephalus",
+    # "pneumocephalus",
     "skull_fracture",
-    "subarachnoid_hemorrhage",
-    "subdural_hemorrhage",
-    "swelling",
+    "sah",
+    "sdh",
 ]
 
 
@@ -87,12 +89,15 @@ def run(
         include_targets,
         exclude_targets,
     )
+    print(f'>>> Parsed input')
 
     # Annotate sentences
     df = annotate_sentences.run(targets, modifiers, doc)
+    print(f'>>> annotated sentences')
 
     # Annotate report
     df = annotate_report.run(df, specified_targets)
+    print(f'>>> annotated report')
 
     # Polish output
     if not save_target_phrases:
