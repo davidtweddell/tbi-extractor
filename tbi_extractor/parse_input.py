@@ -16,7 +16,7 @@ modifiers_file = pkg_resources.resource_filename(__name__, "data/lexical_modifie
 
 
 def run(
-    report_file,
+    # report_file,
     TARGETS,
     include_targets=None,
     exclude_targets=None,
@@ -60,26 +60,33 @@ def run(
         TARGETS, include=include_targets, exclude=exclude_targets
     )
 
+    print(f">>> There are {len(specified_targets)} specified targets.")
+
     # Remove lexical targets from investigation set
     targets = [x for x in targets if x.categoryString() in specified_targets]
 
-    # Load spacy model
-    nlp = download_spacy_model()
+    # # Load spacy model
+    # print(f'>>> Loading spacy model...')
+    # nlp = spacy.load("en_core_sci_md")
+    # print(f'>>> ... loaded.')
 
-    # Load the radiology report from file
-    if report_file.is_file():
+    # from pathlib import Path
 
-        with open(report_file, "r") as report_obj:
-            report = report_obj.read().replace("\n", "")
+    # # Load the radiology report from file
+    # if report_file.is_file():
 
-    else:
-        log.error("Unable to establish pathway to report file.")
-        os.sys.exit(1)
+    #     with open(report_file, "r") as report_obj:
+    #         report = report_obj.read().replace("\n", "")
+
+    # else:
+    #     log.error("Unable to establish pathway to report file.")
+    #     os.sys.exit(1)
 
     # Convert report to spacy container
-    doc = nlp(report)
+    # doc = nlp(report)
 
-    return list(specified_targets), targets, modifiers, doc
+    # return list(specified_targets), targets, modifiers, doc
+    return list(specified_targets), targets, modifiers
 
 
 def alter_default_input(DEFAULT, include=None, exclude=None):
@@ -133,18 +140,3 @@ def alter_default_input(DEFAULT, include=None, exclude=None):
         os.sys.exit(1)
 
     return output
-
-
-def download_spacy_model():
-    """If the spaCy model doesn't exist, download.
-    Typically achieved via: python -m spacy download en"""
-
-    try:
-        nlp = spacy.load("en")
-    except OSError:
-        log.info("Downloading language model spaCy.")
-        spacy.cli.download("en")
-        nlp = spacy.load("en")
-        log.info("Download completed.")
-
-    return nlp
