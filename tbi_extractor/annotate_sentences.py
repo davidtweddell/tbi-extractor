@@ -69,7 +69,7 @@ def annotate_sentence(targets, modifiers, doc):
     context = pyConText.ConTextDocument()
 
     # Split the report into individual sentences
-    sentences = [sent.string.strip() for sent in doc.sents]
+    sentences = [sent.text.strip() for sent in doc.sents]
 
     # For the report, markup sentences, with span and modifier pruning, and add markup to context
     for s in sentences:
@@ -161,7 +161,7 @@ def distance_pruning(context):
 
         # Sanity check: only targets should have predecessors; modifiers can
         # be modified and therefore have both predecessors and successors
-        if (is_type == "target") and (len(g.successors(node)) > 0):
+        if (is_type == "target") and (len(list(g.successors(node))) > 0):
             log.critical("Lexical target has successors.")
 
         # Skip modifier type nodes; focused on pruning in relation to targets
@@ -170,16 +170,16 @@ def distance_pruning(context):
 
         # find nearest modifier for target with multiple modifiers in one sentence
         try:
-            if len(g.predecessors(node)) > 1:
+            if len(list(g.predecessors(node))) > 1:
 
                 target_span = node.getSpan()
                 distance_columns = output_columns + ["left_diff", "right_diff"]
                 modifier_distances = pd.DataFrame(columns=distance_columns)
 
-                for i in range(len(g.predecessors(node))):
+                for i in range(len(list(g.predecessors(node)))):
 
                     modifier_dist = pd.DataFrame(columns=distance_columns)
-                    modifier_span = g.predecessors(node)[i].getSpan()
+                    modifier_span = list(g.predecessors(node))[i].getSpan()
                     left_diff = target_span[0] - modifier_span[1]
                     right_diff = modifier_span[0] - target_span[1]
 
@@ -190,8 +190,8 @@ def distance_pruning(context):
                     if right_diff < 0:
                         right_diff = np.nan
 
-                    modifier_phrase = g.predecessors(node)[i].getPhrase()
-                    modifier_group = g.predecessors(node)[i].categoryString()
+                    modifier_phrase = list(g.predecessors(node))[i].getPhrase()
+                    modifier_group = list(g.predecessors(node))[i].categoryString()
 
                     data = [
                         [
@@ -204,7 +204,8 @@ def distance_pruning(context):
                         ]
                     ]
                     modifier_dist = pd.DataFrame(data, columns=distance_columns)
-                    modifier_distances = modifier_distances.append(modifier_dist)
+                    # modifier_distances = modifier_distances.append(modifier_dist)
+                    modifier_distances = pd.concat([modifier_distances, modifier_dist])
 
                 if modifier_distances[["left_diff", "right_diff"]].isna().all().all():
                     # Unable to establish distance, keep all modifiers identified
@@ -225,8 +226,8 @@ def distance_pruning(context):
                     nearest_modifier = nearest_modifier[output_columns]
 
             else:
-                modifier_phrase = g.predecessors(node)[0].getPhrase()
-                modifier_group = g.predecessors(node)[0].categoryString()
+                modifier_phrase = list(g.predecessors(node))[0].getPhrase()
+                modifier_group = list(g.predecessors(node))[0].categoryString()
                 data = [[target_phrase, target_group, modifier_phrase, modifier_group]]
                 nearest_modifier = pd.DataFrame(data, columns=output_columns)
 
@@ -235,7 +236,8 @@ def distance_pruning(context):
             continue
 
         # add target and modifier, and their respective group, to dataframe
-        df = df.append(nearest_modifier, ignore_index=True)
+        # df = df.append(nearest_modifier, ignore_index=True)
+        df = pd.concat([df, nearest_modifier])
 
     # drop duplicate rows
     df.drop_duplicates(keep="first", inplace=True)
