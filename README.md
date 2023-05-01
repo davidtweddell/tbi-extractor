@@ -1,5 +1,7 @@
 # tbiExtractor
 
+My local version of the original tbiExtractor, updated with newer versions of `networkx` and some accomoodations for deprecated features in `pandas`.
+
 tbiExtractor, extends pyConTextNLP, a regular expression algorithm using negation detection and contextual features, to create a framework for extracting TBI common data elements from radiology reports. The algorithm inputs a radiology report and outputs a structured summary containing 27 clinical findings with their respective annotations.
 
 Default lexical targets: aneurysm, anoxic, atrophy, cistern, contusion, diffuse_axonal, epidural_hemorrhage, facial_fracture, fluid, gray_white_differentiation, hemorrhage, herniation, hydrocephalus, hyperdensities, hypodensities, intracranial_pathology, intraparenchymal_hemorrage, intraventricular_hemorrhage, ischemia, mass_effect, microhemorrhage, midline_shift, pneumocephalus, skull_fracture, subarachnoid_hemorrhage, subdural_hemorrhage, swelling.
