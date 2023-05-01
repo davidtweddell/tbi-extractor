@@ -87,13 +87,16 @@ def ommitted_targets(df, target_list):
             df_default = pd.DataFrame(
                 [[target, target, "default", "normal"]], columns=output_columns
             )
-            df = df.append(df_default, sort=False)
+            df = pd.concat([df, df_default], sort=False)
+            # df = df.append(df_default, sort=False)
 
         else:
             df_default = pd.DataFrame(
                 [[target, target, "default", "absent"]], columns=output_columns
             )
-            df = df.append(df_default, sort=False)
+            df = pd.concat([df, df_default], sort=False)
+            # df = df.append(df_default, sort=False)
+            # df = df.append(df_default, sort=False)
 
     return df
 
