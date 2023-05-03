@@ -15,12 +15,9 @@ FORMAT = "[%(asctime)s - %(levelname)s - %(name)s:%(lineno)d] %(message)s"
 logging.basicConfig(level=logging.INFO, format=FORMAT, datefmt="%Y-%m-%d")
 log = logging.getLogger()
 
-
-# report_file = "/Users/david/projects/tbi-data/raw/pitt/raw-reports/xx00"
-
 TARGETS = [
     # "aneurysm",
-    # "anoxic",
+    "anoxic",
     # "atrophy",
     # "cistern",
     "contusion",
@@ -30,14 +27,14 @@ TARGETS = [
     # "facial_fracture",
     # "fluid",
     # "gray_white_differentiation",
-    "hemorrhage",
+    # "hemorrhage",
     "herniation",
-    "hydrocephalus",
-    "hyperdensities",
-    "hypodensities",
+    # "hydrocephalus",
+    # "hyperdensities",
+    # "hypodensities",
     # "intracranial_pathology",
-    "intraparenchymal_hemorrage",
-    "intraventricular_hemorrhage",
+    "iph",
+    "ivh",
     "ischemia",
     # "mass_effect",
     # "microhemorrhage",

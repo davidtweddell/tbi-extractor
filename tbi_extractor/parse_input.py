@@ -55,6 +55,8 @@ def run(
     targets = itemData.instantiateFromCSVtoitemData(f"file:{targets_file}")
     modifiers = itemData.instantiateFromCSVtoitemData(f"file:{modifiers_file}")
 
+    exclude_targets = ["anoxic"]
+
     # From include and exclude lists, determine algorithm targets
     specified_targets = alter_default_input(
         TARGETS, include=include_targets, exclude=exclude_targets
@@ -99,6 +101,9 @@ def alter_default_input(DEFAULT, include=None, exclude=None):
 
         to_include = set(include)
         default_standard = set(DEFAULT)
+
+        print(f">>> to_include: {to_include}")
+
         output = set.intersection(to_include, default_standard)
 
         if to_include != output:
@@ -112,6 +117,9 @@ def alter_default_input(DEFAULT, include=None, exclude=None):
 
         to_exclude = set(exclude)
         default_standard = set(DEFAULT)
+        
+        print(f">>> to_exclude: {to_exclude}")
+        
         output = set.difference(default_standard, to_exclude)
 
         if to_exclude != set.difference(default_standard, output):
